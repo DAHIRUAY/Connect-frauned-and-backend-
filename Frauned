@@ -1,0 +1,121 @@
+Modern responsive UI
+
+Displays movie title, poster, rating
+
+Easily extendable to connect with a backend or external API (e.g., TMDB)
+
+
+
+---
+
+📁 Project Structure
+
+Assuming you're using Vite or Create React App, create these files:
+
+src/
+├── App.jsx
+├── components/
+│   └── MovieCard.jsx
+├── data/
+│   └── movies.js
+
+
+---
+
+📦 1. movies.js – Mock Movie Data
+
+// src/data/movies.js
+const movies = [
+  {
+    id: 1,
+    title: "Inception",
+    poster:
+      "https://image.tmdb.org/t/p/w500/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg",
+    rating: 8.8,
+    genre: "Sci-Fi",
+  },
+  {
+    id: 2,
+    title: "The Dark Knight",
+    poster:
+      "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+    rating: 9.0,
+    genre: "Action",
+  },
+  {
+    id: 3,
+    title: "Interstellar",
+    poster:
+      "https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",
+    rating: 8.6,
+    genre: "Drama",
+  },
+];
+
+export default movies;
+
+
+---
+
+🧩 2. MovieCard.jsx – Reusable Component
+
+// src/components/MovieCard.jsx
+import React from "react";
+
+const MovieCard = ({ movie }) => {
+  return (
+    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+      <img
+        src={movie.poster}
+        alt={movie.title}
+        className="w-full h-64 object-cover"
+      />
+      <div className="p-4">
+        <h2 className="text-xl font-semibold">{movie.title}</h2>
+        <p className="text-gray-600 text-sm mb-2">Genre: {movie.genre}</p>
+        <span className="inline-block bg-yellow-500 text-white text-xs px-2 py-1 rounded-full">
+          ⭐ {movie.rating}
+        </span>
+      </div>
+    </div>
+  );
+};
+
+export default MovieCard;
+
+
+---
+
+🧠 3. App.jsx – Main UI
+
+// src/App.jsx
+import React from "react";
+import movies from "./data/movies";
+import MovieCard from "./components/MovieCard";
+
+function App() {
+  return (
+    <div className="min-h-screen bg-gray-100 px-6 py-10">
+      <h1 className="text-3xl font-bold text-center mb-8">
+        🎬 Movie Recommendations
+      </h1>
+      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+        {movies.map((movie) => (
+          <MovieCard movie={movie} key={movie.id} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+
+---
+
+🛠 4. Tailwind Setup (if needed)
+
+If you haven't already installed Tailwind CSS, follow the Tailwind React Setup Guide to install and configure it.
+
+
+---
